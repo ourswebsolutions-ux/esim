@@ -5,14 +5,9 @@ import { PrismaClient } from "../generated/prisma/client";
 
 const globalForPrisma = globalThis;
 
-const adapter = new PrismaMariaDb({
-  host: process.env.DB_HOST || "127.0.0.1",
-  port: Number(process.env.DB_PORT || 3306),
-  user: process.env.DB_USER || "root",
-  password: process.env.DB_PASSWORD || "",
-  database: process.env.DB_NAME || "emails",
-  connectionLimit: 5,
-});
+const adapter = new PrismaMariaDb(
+  `${process.env.DATABASE_URL}?connectionLimit=5&connectTimeout=30000&acquireTimeout=30000`
+);
 
 export const prisma =
   globalForPrisma.prisma ||
