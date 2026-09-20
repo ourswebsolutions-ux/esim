@@ -11,10 +11,7 @@ const adapter = new PrismaMariaDb({
   user: process.env.DB_USER || "root",
   password: process.env.DB_PASSWORD || "",
   database: process.env.DB_NAME || "emails",
-
-  connectionLimit: 10,
-  connectTimeout: 10000,
-  acquireTimeout: 10000,
+  connectionLimit: 5,
 });
 
 export const prisma =
